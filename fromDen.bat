@@ -1,2 +1,2 @@
-cd c:\WS3
+cd c:\leds\WS3
 git pull origin master

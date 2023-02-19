@@ -7,6 +7,7 @@ microLED<0, STRIP_PIN, MLED_NO_CLOCK, LED_WS2818, ORDER_GRB, CLI_AVER> strip;
 #define LEDSCOUNT 999
 #define MAXPOWER 255
 int DELAY = 1;
+int FADEOFF = 1000;
 int RAND = 1;
 int FREQ = 1;
 int currColor = 1;
@@ -165,10 +166,10 @@ void IRControl()
 
     switch (command) {
       case 24://ввехр
-        if (DELAY > 1) DELAY = DELAY - 1;
+        if (FADEOFF > 200) FADEOFF = FADEOFF - 100;
         break;
       case 82://вниз
-        DELAY = DELAY + 1;
+        FADEOFF = FADEOFF + 100;
         break;
       case 69://1
         currColor = 1;

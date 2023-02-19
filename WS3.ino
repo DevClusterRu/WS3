@@ -100,7 +100,7 @@ void loop() {
       if (fader[i] == 128) {
 
         //Рандом, от1  до 10 горим или таем
-        int down = random(0, 1000);
+        int down = random(0, FADEOFF);
         if (down > 0) {
           fader[i]--;
         }

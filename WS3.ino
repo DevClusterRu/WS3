@@ -4,7 +4,7 @@
 #include <IRremote.h> //IR датчик
 microLED<0, STRIP_PIN, MLED_NO_CLOCK, LED_WS2818, ORDER_GRB, CLI_AVER> strip;
 
-#define LEDSCOUNT 1000
+#define LEDSCOUNT 100
 #define MAXPOWER 255
 int DELAY = 1;
 int RAND = 1;

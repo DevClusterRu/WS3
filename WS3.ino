@@ -93,13 +93,15 @@ void loop() {
 
       int fadeval = 0;
 
+        fader[i]++;
+
         //Мы на пике света?
-        if (fader[i] == 127) {
+        if (fader[i] == 128) {
 
           //Рандом, от1  до 10 горим или таем
           int down = random(0, 10);
           if (down>0){
-            fader[i]++;
+            fader[i]--;
           }
         }
       

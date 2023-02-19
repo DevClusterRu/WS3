@@ -13,7 +13,7 @@ int currColor = 1;
 
 int rr, gg, bb;
 
-int colors[10][3] = {
+int colors[11][3] = {
   {248, 240, 255},
   {102, 153, 204},
   {235, 250, 215},

@@ -113,9 +113,10 @@ void loop() {
         g = colors[currColor][1] - 255 + fadeval; if (g < 0) g = 0;
         b = colors[currColor][2] - 255 + fadeval; if (b < 0) b = 0;
 
-        if (r >= 255 || g >= 255 || b >= 255) {
-          r = 255; g = 255; b = 255;
-        }
+        if (r >= 255) r = 255;
+        if (g >= 255) g = 255;
+        if (b >= 255) b = 255;
+
       } else {
 
 
@@ -129,6 +130,7 @@ void loop() {
 
 
     } else {
+      
       r = 0; g = 0; b = 0;
 
     }

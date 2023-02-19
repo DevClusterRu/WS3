@@ -93,29 +93,33 @@ void loop() {
 
       int fadeval = 0;
 
-        fader[i]++;
+      fader[i]++;
 
-        //Мы на пике света?
-        if (fader[i] == 128) {
+      //Мы на пике света?
+      if (fader[i] == 128) {
 
-          //Рандом, от1  до 10 горим или таем
-          int down = random(0, 10);
-          if (down>0){
-            fader[i]--;
-          }
+        //Рандом, от1  до 10 горим или таем
+        int down = random(0, 10);
+        if (down > 0) {
+          fader[i]--;
         }
-      
+      }
+
 
       if (fader[i] < 128) {
         fadeval = fader[i] * 2;
 
-        r = colors[currColor][0] - 255 + fadeval; if (r < 0) r = 0;
-        g = colors[currColor][1] - 255 + fadeval; if (g < 0) g = 0;
-        b = colors[currColor][2] - 255 + fadeval; if (b < 0) b = 0;
+        if (r < 255 && g < 255 && b < 255)
+        {
+          r = colors[currColor][0] - 255 + fadeval; if (r < 0) r = 0;
+          g = colors[currColor][1] - 255 + fadeval; if (g < 0) g = 0;
+          b = colors[currColor][2] - 255 + fadeval; if (b < 0) b = 0;
+        } else {
+          r = colors[currColor][0];
+          g = colors[currColor][1];
+          b = colors[currColor][2];
+        }
 
-        if (r >= 255) r = 255;
-        if (g >= 255) g = 255;
-        if (b >= 255) b = 255;
 
       } else {
 
@@ -130,7 +134,7 @@ void loop() {
 
 
     } else {
-      
+
       r = 0; g = 0; b = 0;
 
     }

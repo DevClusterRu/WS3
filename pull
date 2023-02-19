@@ -1,0 +1,2 @@
+git pull origin master
+chown den:den WS3.ino

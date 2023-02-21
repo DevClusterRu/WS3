@@ -4,8 +4,8 @@
 #include <IRremote.h> //IR датчик
 microLED<0, STRIP_PIN, MLED_NO_CLOCK, LED_WS2818, ORDER_GRB, CLI_AVER> strip;
 
-#define LEDSCOUNT 500
-#define MAXPOWER 240
+#define LEDSCOUNT 999
+#define MAXPOWER 150
 int DELAY = 1;
 int FADEOFF = 1000;
 int RAND = 1;
@@ -36,18 +36,23 @@ void setup() {
     fader[i] = 0;
   }
 
-  DELAY = EEPROM.read(0);
-  if (DELAY<=0) DELAY = 0;
-  FADEOFF = EEPROM.read(1);
-  if (FADEOFF<=0) FADEOFF = 1000;
-  RAND = EEPROM.read(2);
-  if (RAND<=0) RAND = 1;
-  FREQ = EEPROM.read(3);
-  if (FREQ<=0) FREQ = 1;
-  currColor = EEPROM.read(4);
-  if (currColor>10) currColor = 10;
-  
-
+  byte FIRST = EEPROM.read(0);
+  if (FIRST==123){ //Это не первый запуск!
+      FADEOFF = EEPROM.read(1);
+      if (FADEOFF<=0) FADEOFF = 1000;
+      RAND = EEPROM.read(2);
+      if (RAND<=0) RAND = 1;
+      FREQ = EEPROM.read(3);
+      if (FREQ<=0) FREQ = 1;
+      currColor = EEPROM.read(4);
+      if (currColor>10) currColor = 10;
+  } else {
+    EEPROM.write(0, 123);
+    EEPROM.write(1, FADEOFF);
+    EEPROM.write(2, RAND);
+    EEPROM.write(3, FREQ);
+    EEPROM.write(4, currColor);
+  }
   
 }
 

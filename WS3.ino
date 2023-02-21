@@ -29,7 +29,12 @@ int colors[11][3] = {
 };
 uint8_t fader[LEDSCOUNT];
 
+unsigned long myTime;
+
+
 void setup() {
+  myTime = millis();
+  
   Serial.begin(9600);
   IrReceiver.begin(7);
   for (int i = 0; i < LEDSCOUNT; i++) {
@@ -56,7 +61,17 @@ void setup() {
   
 }
 
+
 void loop() {
+
+  if (millis() - myTime > 1000){
+    currColor++;
+    if (currColor>10) currColor = 0;
+    myTime = millis();
+  }
+  
+  
+
 
   IRControl();
 

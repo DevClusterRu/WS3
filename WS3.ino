@@ -64,6 +64,10 @@ void setup() {
 
 void loop() {
 
+  if (myTime>millis()){
+    myTime = millis();
+  }
+
   if (millis() - myTime > 1000){
     currColor++;
     if (currColor>10) currColor = 0;

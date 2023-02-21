@@ -47,6 +47,7 @@ void setup() {
       currColor = EEPROM.read(4);
       if (currColor>10) currColor = 10;
   } else {
+    EEPROM.write(0, 123);
     EEPROM.write(1, FADEOFF);
     EEPROM.write(2, RAND);
     EEPROM.write(3, FREQ);

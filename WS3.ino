@@ -1,5 +1,5 @@
 #define STRIP_PIN 9
-
+#include <EEPROM.h>
 #include <microLED.h>
 #include <IRremote.h> //IR датчик
 microLED<0, STRIP_PIN, MLED_NO_CLOCK, LED_WS2818, ORDER_GRB, CLI_AVER> strip;
@@ -35,6 +35,20 @@ void setup() {
   for (int i = 0; i < LEDSCOUNT; i++) {
     fader[i] = 0;
   }
+
+  DELAY = EEPROM.read(0);
+  if (DELAY<=0) DELAY = 0;
+  FADEOFF = EEPROM.read(1);
+  if (FADEOFF<=0) FADEOFF = 1000;
+  RAND = EEPROM.read(2);
+  if (RAND<=0) RAND = 1;
+  FREQ = EEPROM.read(3);
+  if (FREQ<=0) FREQ = 1;
+  currColor = EEPROM.read(4);
+  if (currColor>10) currColor = 10;
+  
+
+  
 }
 
 void loop() {
@@ -167,52 +181,71 @@ void IRControl()
     switch (command) {
       case 24://ввехр
         if (FADEOFF > 200) FADEOFF = FADEOFF - 100;
+        EEPROM.write(1, round(FADEOFF/100));
         break;
       case 82://вниз
         FADEOFF = FADEOFF + 100;
+        if (FADEOFF>25500) FADEOFF = 25500;
+        EEPROM.write(1, round(FADEOFF/100));
         break;
       case 69://1
         currColor = 1;
+        EEPROM.write(4, currColor);
         break;
       case 70://2
         currColor = 2;
+        EEPROM.write(4, currColor);
         break;
       case 71://3
         currColor = 3;
+        EEPROM.write(4, currColor);
         break;
       case 68://4
         currColor = 4;
+        EEPROM.write(4, currColor);
         break;
       case 64://5
         currColor = 5;
+        EEPROM.write(4, currColor);
         break;
       case 67://6
         currColor = 6;
+        EEPROM.write(4, currColor);
         break;
       case 7://7
         currColor = 7;
+        EEPROM.write(4, currColor);
         break;
       case 21://8
         currColor = 8;
+        EEPROM.write(4, currColor);
         break;
       case 9://9
         currColor = 9;
+        EEPROM.write(4, currColor);
         break;
       case 25://0
         currColor = 10;
+        EEPROM.write(4, currColor);
         break;
 
       case 90://право
         if (RAND > 6) RAND = RAND - 5;
+        EEPROM.write(2, RAND);
         break;
       case 8://лево
         RAND = RAND + 5;
+        if (RAND>255) RAND = 255;
+        EEPROM.write(2, RAND);
         break;
       case 22://*
         if (FREQ > 2) FREQ--;
+        EEPROM.write(3, FREQ);
         break;
       case 13://#
         FREQ++;
+        if (FREQ>255) FREQ = 255;
+        EEPROM.write(3, FREQ);
         break;
     }
     // Serial.print(rr);

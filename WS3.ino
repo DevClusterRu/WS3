@@ -4,8 +4,8 @@
 #include <IRremote.h> //IR датчик
 microLED<0, STRIP_PIN, MLED_NO_CLOCK, LED_WS2818, ORDER_GRB, CLI_AVER> strip;
 
-#define LEDSCOUNT 999
-#define MAXPOWER 255
+#define LEDSCOUNT 1000
+#define MAXPOWER 150
 int DELAY = 1;
 int FADEOFF = 1000;
 int RAND = 1;
@@ -15,17 +15,17 @@ int currColor = 1;
 int rr, gg, bb;
 
 int colors[11][3] = {
-  {248, 240, 255},
-  {102, 153, 204},
-  {235, 250, 215},
-  {0, 255, 255},
-  {255, 127, 212},
-  {240, 255, 255},
-  {245, 245, 220},
-  {228, 255, 196},
+  {200, 230, 235},
+  {220, 215, 60},
+  {225, 220, 245},
+  {0, 245, 245},
+  {245, 140, 200},
+  {210, 230, 70},
+  {235, 235, 220},
+  {228, 235, 166},
   {43, 138, 226},
   {42, 165, 42},
-  {42, 165, 42}
+  {42, 165, 200}
 };
 uint8_t fader[LEDSCOUNT];
 

@@ -68,7 +68,7 @@ void loop() {
     myTime = millis();
   }
 
-  if (millis() - myTime > 1000){
+  if (millis() - myTime > (60*60*1000/11)){
     currColor++;
     if (currColor>10) currColor = 0;
     myTime = millis();
